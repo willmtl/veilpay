@@ -1,6 +1,7 @@
 /* Company Treasury & Payroll Management Module */
 import { icons } from '../icons.js';
 import { store } from '../state.js';
+import { signWithLace } from '../laceConnector.js';
 
 export function renderDAppEmployer() {
   const state = store;
@@ -150,7 +151,7 @@ export function renderDAppEmployer() {
             <div id="fund-success-msg" style="display: none; margin-top: 1rem; padding: 0.85rem 1rem; background: rgba(22, 163, 74, 0.08); border: 1px solid rgba(22, 163, 74, 0.25); border-radius: 12px;">
               <div class="text-xs text-mono" style="color: #16a34a; display: flex; align-items: center; gap: 0.5rem;">
                 ${icons.check(14)}
-                <span>Vault funded successfully! Smart contract VeilDisburse is ready for claims.</span>
+                <span id="fund-success-text">Vault funded successfully! Smart contract VeilDisburse is ready for claims.</span>
               </div>
             </div>
           </div>
@@ -189,13 +190,38 @@ export function attachDAppEmployerListeners() {
   }
 
   if (fundBtn) {
-    fundBtn.addEventListener('click', () => {
+    fundBtn.addEventListener('click', async () => {
       const depositVal = document.getElementById('fund-deposit-input')?.value;
-      store.fundVaultDeposit(depositVal);
       const msg = document.getElementById('fund-success-msg');
-      if (msg) {
-        msg.style.display = 'block';
-        setTimeout(() => { msg.style.display = 'none'; }, 4000);
+      const text = document.getElementById('fund-success-text');
+
+      try {
+        fundBtn.disabled = true;
+        fundBtn.innerHTML = `${icons.refresh(16)} <span>Authorizing Signature...</span>`;
+
+        const sigResult = await signWithLace({
+          contract: store.contract.address,
+          circuit: 'fund_payroll_pool',
+          depositAmount: depositVal,
+          epoch: store.epoch
+        });
+
+        await store.fundVaultDeposit(depositVal);
+
+        if (msg && text) {
+          text.textContent = `Vault funded & signed (${sigResult.type}): VeilDisburse locked with +${Number(depositVal).toLocaleString()} tDUST.`;
+          msg.style.display = 'block';
+          setTimeout(() => { if (msg) msg.style.display = 'none'; }, 5000);
+        }
+      } catch (err) {
+        if (msg && text) {
+          text.textContent = `Signature cancelled or rejected: ${err.message}`;
+          msg.style.display = 'block';
+          setTimeout(() => { if (msg) msg.style.display = 'none'; }, 4000);
+        }
+      } finally {
+        fundBtn.disabled = false;
+        fundBtn.innerHTML = `${icons.database(16)} <span>Deposit & Lock Payroll Funds (${store.cohort.reduce((s, c) => s + c.amount, 0).toLocaleString()} tDUST)</span>`;
       }
     });
   }

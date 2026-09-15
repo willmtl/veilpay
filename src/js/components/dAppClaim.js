@@ -2,6 +2,7 @@
 import { icons } from '../icons.js';
 import { store } from '../state.js';
 import { generateStealthAddress, deriveNullifier, simulateZKProofGeneration } from '../crypto-sim.js';
+import { signWithLace } from '../laceConnector.js';
 
 let splitChecking = 50;
 let splitCold = 35;
@@ -348,6 +349,21 @@ export function attachDAppClaimListeners() {
         await simulateZKProofGeneration({ nullifier }, (stepName, curr, total) => {
           appendLog(`[Step ${curr}/${total}] ${stepName}`);
         });
+
+        // Request wallet signature
+        appendLog(`[WALLET] Requesting transaction signature authorization...`);
+        const sigResult = await signWithLace({
+          contract: state.contract.address,
+          circuit: 'claim_disbursement_with_split',
+          nullifier: nullifier,
+          amount: currentEmp.amount,
+          destinations: [stealthAddrChecking, stealthAddrCold, stealthAddrTax],
+          epoch: state.epoch
+        }, (statusText) => {
+          appendLog(`[SIGNATURE] ${statusText}`);
+        });
+
+        appendLog(`[SIGNATURE VERIFIED] Authorizing tx hash: ${sigResult.signature.slice(0, 18)}... (${sigResult.type})`);
 
         // Execute state update
         await store.claimDisbursement(
