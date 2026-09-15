@@ -1,0 +1,271 @@
+{
+  "epoch": 1,
+  "blockHeight": 187080,
+  "vaultBalance": 261500,
+  "accruedYieldBalance": 287.7627,
+  "yieldApy": 4.85,
+  "commitmentRoot": "0x2befbb6d284c6d172befbb6d284c6d172befbb6d284c6d172befbb6d284c6d17",
+  "merkleDepth": 3,
+  "spentNullifiers": [
+    "0x9a53393d682fae9f9a53393d682fae9f9a53393d682fae9f9a53393d682fae9f",
+    "0x8f6b5c4bb3e2d3618f6b5c4bb3e2d3618f6b5c4bb3e2d3618f6b5c4bb3e2d361",
+    "0x5d97e370bd17865a5d97e370bd17865a5d97e370bd17865a5d97e370bd17865a",
+    "0x2c34179a18b77d5a2c34179a18b77d5a2c34179a18b77d5a2c34179a18b77d5a"
+  ],
+  "cohort": [
+    {
+      "id": "emp-1",
+      "name": "Alice Vance",
+      "role": "Lead Cryptographer",
+      "amount": 9500,
+      "publicKey": "0x3a91f8...9b12",
+      "secretKey": "sk_secp_alice_9821a89c924f112e",
+      "salt": "0x7f8841a0e1",
+      "claimed": true,
+      "splitRecipe": {
+        "checking": 50,
+        "coldVault": 35,
+        "taxReserve": 15
+      },
+      "commitment": "0xfeba1d3ec174cbd6feba1d3ec174cbd6feba1d3ec174cbd6feba1d3ec174cbd6"
+    },
+    {
+      "id": "emp-2",
+      "name": "Bob Chen",
+      "role": "Systems Engineer",
+      "amount": 7800,
+      "publicKey": "0x7c44e1...228a",
+      "secretKey": "sk_secp_bob_48810bb214c771aa",
+      "salt": "0x12bb99ac04",
+      "claimed": true,
+      "splitRecipe": {
+        "checking": 50,
+        "coldVault": 35,
+        "taxReserve": 15
+      },
+      "commitment": "0xc9b138c00ce74812c9b138c00ce74812c9b138c00ce74812c9b138c00ce74812"
+    },
+    {
+      "id": "emp-3",
+      "name": "Charlie Davis",
+      "role": "Security Auditor",
+      "amount": 6200,
+      "publicKey": "0x99e120...f810",
+      "secretKey": "sk_secp_charlie_5588cc10992fa00b",
+      "salt": "0x44dd1178fe",
+      "claimed": true,
+      "splitRecipe": {
+        "checking": 50,
+        "coldVault": 35,
+        "taxReserve": 15
+      },
+      "commitment": "0xd74888c6a533d03ad74888c6a533d03ad74888c6a533d03ad74888c6a533d03a"
+    },
+    {
+      "id": "emp-4",
+      "name": "Dana Kovacs",
+      "role": "ZK Protocol Architect",
+      "amount": 11500,
+      "publicKey": "0x11ab88...44cc",
+      "secretKey": "sk_secp_dana_7733ff441098aa77",
+      "salt": "0x99aa55ee21",
+      "claimed": false,
+      "splitRecipe": {
+        "checking": 55,
+        "coldVault": 30,
+        "taxReserve": 15
+      },
+      "commitment": "0x401fef9a0f1f783e401fef9a0f1f783e401fef9a0f1f783e401fef9a0f1f783e"
+    },
+    {
+      "id": "emp-1789475542780",
+      "name": "Test Judge",
+      "role": "Evaluator",
+      "amount": 5000,
+      "publicKey": "0x28f9a5...4593",
+      "secretKey": "sk_secp_test_judge_e3b9191d",
+      "salt": "0x458939c7",
+      "claimed": false,
+      "splitRecipe": {
+        "checking": 50,
+        "coldVault": 35,
+        "taxReserve": 15
+      },
+      "commitment": "0xb2b36bfca507fe70b2b36bfca507fe70b2b36bfca507fe70b2b36bfca507fe70"
+    },
+    {
+      "id": "emp-1789476169066",
+      "name": "Ayush",
+      "role": "Founder",
+      "amount": 1000,
+      "publicKey": "0x8a0eae...5f12",
+      "secretKey": "sk_secp_ayush_2211e9ee",
+      "salt": "0xb13ce798",
+      "claimed": true,
+      "splitRecipe": {
+        "checking": 100,
+        "coldVault": 0,
+        "taxReserve": 0
+      },
+      "commitment": "0xa7c7aeda5a9f88bea7c7aeda5a9f88bea7c7aeda5a9f88bea7c7aeda5a9f88be"
+    }
+  ],
+  "txLog": [
+    {
+      "id": "tx-4789",
+      "circuit": "claim_disbursement_with_split",
+      "type": "CLAIM_DISBURSEMENT_WITH_SPLIT",
+      "epoch": 1,
+      "nullifier": "0x2c34179a18b77d5a2c34179a18b77d5a2c34179a18b77d5a2c34179a18b77d5a",
+      "amountDisbursed": 6200,
+      "stealthOutputsCount": 3,
+      "timestamp": 1789478084789,
+      "status": "CONFIRMED",
+      "blockHeight": 186161
+    },
+    {
+      "id": "tx-9164",
+      "circuit": "fund_payroll_pool",
+      "type": "FUND_PAYROLL_POOL",
+      "epoch": 1,
+      "amount": 35000,
+      "merkleRoot": "0x2befbb6d284c6d172befbb6d284c6d172befbb6d284c6d172befbb6d284c6d17",
+      "timestamp": 1789477859165,
+      "status": "CONFIRMED",
+      "blockHeight": 186132
+    },
+    {
+      "id": "tx-4455",
+      "circuit": "claim_disbursement_with_split",
+      "type": "CLAIM_DISBURSEMENT_WITH_SPLIT",
+      "epoch": 1,
+      "nullifier": "0x5d97e370bd17865a5d97e370bd17865a5d97e370bd17865a5d97e370bd17865a",
+      "amountDisbursed": 1000,
+      "stealthOutputsCount": 3,
+      "timestamp": 1789476214455,
+      "status": "CONFIRMED",
+      "blockHeight": 186095
+    },
+    {
+      "id": "tx-0454",
+      "circuit": "fund_payroll_pool",
+      "type": "FUND_PAYROLL_POOL",
+      "epoch": 1,
+      "amount": 41000,
+      "merkleRoot": "0x2befbb6d284c6d172befbb6d284c6d172befbb6d284c6d172befbb6d284c6d17",
+      "timestamp": 1789476190454,
+      "status": "CONFIRMED",
+      "blockHeight": 186091
+    },
+    {
+      "id": "tx-9854",
+      "circuit": "fund_payroll_pool",
+      "type": "FUND_PAYROLL_POOL",
+      "epoch": 1,
+      "amount": 41000,
+      "merkleRoot": "0x2befbb6d284c6d172befbb6d284c6d172befbb6d284c6d172befbb6d284c6d17",
+      "timestamp": 1789476189854,
+      "status": "CONFIRMED",
+      "blockHeight": 186090
+    },
+    {
+      "id": "tx-9236",
+      "circuit": "fund_payroll_pool",
+      "type": "FUND_PAYROLL_POOL",
+      "epoch": 1,
+      "amount": 41000,
+      "merkleRoot": "0x2befbb6d284c6d172befbb6d284c6d172befbb6d284c6d172befbb6d284c6d17",
+      "timestamp": 1789476189236,
+      "status": "CONFIRMED",
+      "blockHeight": 186089
+    },
+    {
+      "id": "tx-6989",
+      "circuit": "fund_payroll_pool",
+      "type": "FUND_PAYROLL_POOL",
+      "epoch": 1,
+      "amount": 41000,
+      "merkleRoot": "0x2befbb6d284c6d172befbb6d284c6d172befbb6d284c6d172befbb6d284c6d17",
+      "timestamp": 1789476186989,
+      "status": "CONFIRMED",
+      "blockHeight": 186088
+    },
+    {
+      "id": "tx-6076",
+      "circuit": "fund_payroll_pool",
+      "type": "FUND_PAYROLL_POOL",
+      "epoch": 1,
+      "amount": 41000,
+      "merkleRoot": "0x2befbb6d284c6d172befbb6d284c6d172befbb6d284c6d172befbb6d284c6d17",
+      "timestamp": 1789476186076,
+      "status": "CONFIRMED",
+      "blockHeight": 186087
+    },
+    {
+      "id": "tx-4504",
+      "circuit": "fund_payroll_pool",
+      "type": "FUND_PAYROLL_POOL",
+      "epoch": 1,
+      "amount": 1000,
+      "merkleRoot": "0x2befbb6d284c6d172befbb6d284c6d172befbb6d284c6d172befbb6d284c6d17",
+      "timestamp": 1789476184504,
+      "status": "CONFIRMED",
+      "blockHeight": 186086
+    },
+    {
+      "id": "tx-9901",
+      "circuit": "claim_disbursement_with_split",
+      "type": "CLAIM_DISBURSEMENT_WITH_SPLIT",
+      "epoch": 1,
+      "nullifier": "0x8f6b5c4bb3e2d3618f6b5c4bb3e2d3618f6b5c4bb3e2d3618f6b5c4bb3e2d361",
+      "amountDisbursed": 7800,
+      "stealthOutputsCount": 3,
+      "timestamp": 1789475749901,
+      "status": "CONFIRMED",
+      "blockHeight": 186030
+    },
+    {
+      "id": "tx-1343",
+      "circuit": "fund_payroll_pool",
+      "type": "FUND_PAYROLL_POOL",
+      "epoch": 1,
+      "amount": 10000,
+      "merkleRoot": "0xd7f1855dd50544abd7f1855dd50544abd7f1855dd50544abd7f1855dd50544ab",
+      "timestamp": 1789475551343,
+      "status": "CONFIRMED",
+      "blockHeight": 186004
+    },
+    {
+      "id": "tx-8681",
+      "circuit": "claim_disbursement_with_split",
+      "type": "CLAIM_DISBURSEMENT_WITH_SPLIT",
+      "epoch": 1,
+      "nullifier": "0x9a53393d682fae9f9a53393d682fae9f9a53393d682fae9f9a53393d682fae9f",
+      "amountDisbursed": 9500,
+      "stealthOutputsCount": 3,
+      "timestamp": 1789424198681,
+      "status": "CONFIRMED",
+      "blockHeight": 185005
+    },
+    {
+      "id": "tx-001",
+      "circuit": "fund_payroll_pool",
+      "type": "FUND_PAYROLL_POOL",
+      "epoch": 1,
+      "amount": 35000,
+      "merkleRoot": "0x9a16d0c51b82d3239a16d0c51b82d3239a16d0c51b82d3239a16d0c51b82d323",
+      "timestamp": 1789405601269,
+      "status": "CONFIRMED",
+      "blockHeight": 184920
+    }
+  ],
+  "wallets": {
+    "mn_addr_1z8a49c90f23e818b": 172500,
+    "mn_addr_test123": 10000
+  },
+  "stats": {
+    "totalDeposited": 286000,
+    "totalDisbursed": 24500,
+    "totalClaimsCount": 4
+  }
+}

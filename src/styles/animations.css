@@ -1,0 +1,150 @@
+/* Apple-Inspired Fluid Motions & Animations for VeilPay */
+
+/* Entrance Staggers */
+.animate-hero-badge {
+  opacity: 0;
+  animation: appleFadeUp 0.8s cubic-bezier(0.16, 1, 0.3, 1) 0.1s forwards;
+}
+
+.animate-hero-title {
+  opacity: 0;
+  animation: appleFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.2s forwards;
+}
+
+.animate-hero-subtitle {
+  opacity: 0;
+  animation: appleFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.35s forwards;
+}
+
+.animate-hero-cta {
+  opacity: 0;
+  animation: appleFadeUp 0.9s cubic-bezier(0.16, 1, 0.3, 1) 0.5s forwards;
+}
+
+.animate-hero-card {
+  opacity: 0;
+  animation: appleFadeUp 1s cubic-bezier(0.16, 1, 0.3, 1) 0.65s forwards;
+}
+
+@keyframes appleFadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(24px) scale(0.99);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0) scale(1);
+  }
+}
+
+/* Ambient Floating Background Orbs */
+.ambient-orb {
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  border-radius: 50%;
+  filter: blur(120px);
+  pointer-events: none;
+  opacity: 0.12;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.8) 0%, rgba(255, 255, 255, 0) 70%);
+  animation: ambientFloat 18s ease-in-out infinite alternate;
+}
+
+.ambient-orb.orb-left {
+  top: 15%;
+  left: -10%;
+  animation-duration: 22s;
+}
+
+.ambient-orb.orb-right {
+  top: 25%;
+  right: -10%;
+  animation-duration: 26s;
+  animation-delay: -5s;
+}
+
+@keyframes ambientFloat {
+  0% {
+    transform: translate(0, 0) scale(1);
+  }
+  50% {
+    transform: translate(40px, -30px) scale(1.1);
+  }
+  100% {
+    transform: translate(-30px, 40px) scale(0.95);
+  }
+}
+
+/* Privacy Radar Scanning Line */
+.radar-scan-line {
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  width: 2px;
+  background: linear-gradient(180deg, transparent 0%, rgba(255, 255, 255, 0.8) 50%, transparent 100%);
+  box-shadow: 0 0 16px rgba(255, 255, 255, 0.6);
+  pointer-events: none;
+  opacity: 0.7;
+  animation: radarSweep 6s ease-in-out infinite alternate;
+}
+
+@keyframes radarSweep {
+  0% {
+    left: 0%;
+    opacity: 0.1;
+  }
+  20% {
+    opacity: 0.8;
+  }
+  80% {
+    opacity: 0.8;
+  }
+  100% {
+    left: 100%;
+    opacity: 0.1;
+  }
+}
+
+/* Card Hover Specular Sheen */
+.card-sheen {
+  position: relative;
+  overflow: hidden;
+}
+
+.card-sheen::after {
+  content: '';
+  position: absolute;
+  top: -50%;
+  left: -50%;
+  width: 200%;
+  height: 200%;
+  background: radial-gradient(circle, rgba(255, 255, 255, 0.05) 0%, transparent 60%);
+  opacity: 0;
+  transition: opacity 0.4s ease;
+  pointer-events: none;
+}
+
+.card-sheen:hover::after {
+  opacity: 1;
+}
+
+/* Number Ticker Transition */
+.metric-number-anim {
+  transition: all 0.4s cubic-bezier(0.16, 1, 0.3, 1);
+}
+
+/* Apple Modal Animation */
+.modal-enter {
+  animation: modalScaleUp 0.3s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+}
+
+@keyframes modalScaleUp {
+  from {
+    opacity: 0;
+    transform: scale(0.94) translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: scale(1) translateY(0);
+  }
+}

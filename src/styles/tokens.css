@@ -1,0 +1,57 @@
+/* Minimalist Clean Light Design Tokens (Apple-Inspired Spacious Aesthetics) */
+:root {
+  /* Surface Tokens (Clean White & Soft Apple Warm-Grays) */
+  --bg-black: #ffffff;
+  --bg-surface-0: #ffffff;
+  --bg-surface-1: #fbfbfd;
+  --bg-surface-2: #f5f5f7;
+  --bg-surface-3: #ececee;
+  --bg-surface-elevated: #ffffff;
+  --bg-glass: rgba(255, 255, 255, 0.88);
+  --bg-card-glass: rgba(255, 255, 255, 0.94);
+
+  /* Monochrome Text Tokens */
+  --text-primary: #1d1d1f;
+  --text-secondary: #515154;
+  --text-tertiary: #6e6e73;
+  --text-muted: #86868b;
+  --text-inverted: #ffffff;
+
+  /* Border Tokens */
+  --border-subtle: rgba(0, 0, 0, 0.07);
+  --border-medium: rgba(0, 0, 0, 0.12);
+  --border-strong: rgba(0, 0, 0, 0.22);
+  --border-white: #000000;
+  --specular-glow: 0 1px 2px rgba(0, 0, 0, 0.04);
+  --specular-glow-strong: 0 2px 6px rgba(0, 0, 0, 0.08);
+
+  /* Typography */
+  --font-sans: 'Inter', -apple-system, BlinkMacSystemFont, "SF Pro Display", "Segoe UI", Roboto, sans-serif;
+  --font-heading: 'Space Grotesk', var(--font-sans);
+  --font-mono: 'JetBrains Mono', "SF Mono", Consolas, Menlo, monospace;
+
+  /* Elevation & Apple-style Soft Atmospheric Shadows */
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.04);
+  --shadow-card: 0 12px 36px -8px rgba(0, 0, 0, 0.06), 0 0 0 1px rgba(0, 0, 0, 0.06);
+  --shadow-card-hover: 0 20px 48px -10px rgba(0, 0, 0, 0.1), 0 0 0 1px rgba(0, 0, 0, 0.1);
+  --shadow-pill: 0 4px 16px rgba(0, 0, 0, 0.06);
+  --shadow-white-glow: 0 0 24px rgba(0, 0, 0, 0.06);
+
+  /* Apple Soft Curves & Squircles */
+  --radius-xs: 10px;
+  --radius-sm: 16px;
+  --radius-md: 22px;
+  --radius-lg: 30px;
+  --radius-xl: 38px;
+  --radius-pill: 9999px;
+
+  /* Apple Fluid Motion Physics */
+  --ease-apple: cubic-bezier(0.16, 1, 0.3, 1);
+  --transition-fast: 160ms var(--ease-apple);
+  --transition-normal: 280ms var(--ease-apple);
+  --transition-smooth: 450ms var(--ease-apple);
+
+  /* Layout Constants - Spacious */
+  --container-max-width: 1240px;
+  --header-height: 76px;
+}

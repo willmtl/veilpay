@@ -1,0 +1,383 @@
+/* dApp Suite Styles: Apple-Inspired Curves & Sleek Light Controls */
+
+.dapp-container {
+  padding-top: calc(var(--header-height) + 3rem);
+  padding-bottom: 7rem;
+  min-height: 100vh;
+}
+
+/* Floating Apple Glass Telemetry Banner */
+.dapp-telemetry-banner {
+  background: #ffffff;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-xl);
+  padding: 1.35rem 2.25rem;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2.75rem;
+  flex-wrap: wrap;
+  gap: 1.5rem;
+  box-shadow: var(--shadow-card);
+}
+
+.telemetry-item {
+  display: flex;
+  align-items: center;
+  gap: 0.75rem;
+}
+
+.telemetry-label {
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  text-transform: uppercase;
+  color: var(--text-tertiary);
+  letter-spacing: 0.06em;
+}
+
+.telemetry-value {
+  font-family: var(--font-mono);
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: #111111;
+}
+
+.telemetry-value.accent {
+  background: #111111;
+  color: #ffffff;
+  padding: 0.25rem 0.75rem;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.12);
+}
+
+/* Apple Pill Segmented dApp Tab Bar */
+.dapp-nav-bar {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.5rem;
+  background: #ebebee;
+  border: 1px solid rgba(0, 0, 0, 0.06);
+  padding: 0.45rem;
+  border-radius: var(--radius-pill);
+  margin-bottom: 3rem;
+  overflow-x: auto;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+.dapp-nav-btn {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.75rem 1.5rem;
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--text-secondary);
+  border-radius: var(--radius-pill);
+  transition: all var(--transition-fast);
+  white-space: nowrap;
+  cursor: pointer;
+}
+
+.dapp-nav-btn:hover {
+  color: #111111;
+  background: rgba(0, 0, 0, 0.04);
+}
+
+.dapp-nav-btn.active {
+  background: #ffffff;
+  color: #000000;
+  font-weight: 600;
+  box-shadow: 0 4px 14px rgba(0, 0, 0, 0.08);
+}
+
+/* Module Layout */
+.dapp-module-view {
+  display: none;
+}
+
+.dapp-module-view.active {
+  display: block;
+  animation: fadeIn 250ms var(--ease-apple);
+}
+
+@keyframes fadeIn {
+  from { opacity: 0; transform: translateY(8px); }
+  to { opacity: 1; transform: translateY(0); }
+}
+
+.dapp-grid-split {
+  display: grid;
+  grid-template-columns: 1.25fr 1fr;
+  gap: 2.5rem;
+  align-items: start;
+}
+
+/* Table Styles for Cohort & Logs (Rounded Squircles) */
+.data-table-wrap {
+  width: 100%;
+  overflow-x: auto;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  background: #ffffff;
+  margin: 1.5rem 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+  font-size: 0.875rem;
+}
+
+.data-table th, .data-table td {
+  padding: 1.15rem 1.35rem;
+  border-bottom: 1px solid var(--border-subtle);
+  text-align: left;
+}
+
+.data-table th {
+  background: #f8f8fa;
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  color: var(--text-secondary);
+}
+
+.data-table tr:hover td {
+  background: rgba(0, 0, 0, 0.015);
+}
+
+/* Merkle Tree Visualizer Box */
+.merkle-visual-box {
+  background: #fafafc;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-md);
+  padding: 1.5rem;
+  margin: 1.5rem 0;
+  font-family: var(--font-mono);
+}
+
+.merkle-root-display {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 1rem 1.25rem;
+  background: #f5f5f7;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-sm);
+  margin-bottom: 1rem;
+  font-size: 0.825rem;
+}
+
+.merkle-root-hash {
+  color: #111111;
+  font-weight: 600;
+  word-break: break-all;
+}
+
+/* Stealth Split Controls */
+.split-sliders-card {
+  background: #ffffff;
+  border: 1px solid var(--border-subtle);
+  border-radius: var(--radius-md);
+  padding: 2rem;
+  margin: 2rem 0;
+  box-shadow: var(--shadow-sm);
+}
+
+.split-channel-item {
+  margin-bottom: 1.5rem;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.split-channel-item:last-child {
+  margin-bottom: 0;
+  padding-bottom: 0;
+  border-bottom: none;
+}
+
+.split-channel-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 0.75rem;
+}
+
+.split-channel-title {
+  font-weight: 600;
+  font-size: 0.925rem;
+  color: #111111;
+  display: flex;
+  align-items: center;
+  gap: 0.6rem;
+}
+
+.split-channel-pct {
+  font-family: var(--font-mono);
+  font-weight: 600;
+  font-size: 0.925rem;
+  color: #111111;
+}
+
+.split-stealth-addr {
+  font-family: var(--font-mono);
+  font-size: 0.775rem;
+  color: var(--text-tertiary);
+  margin-top: 0.5rem;
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+/* Yield Streaming Box (Apple Gradient Glow) */
+.yield-growth-banner {
+  background: linear-gradient(135deg, #fcfcfd 0%, #f5f5f7 100%);
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-xl);
+  padding: 2.25rem 2.75rem;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.5rem;
+  box-shadow: var(--shadow-card);
+}
+
+.yield-rate-badge {
+  font-family: var(--font-mono);
+  font-size: 0.775rem;
+  padding: 0.35rem 0.85rem;
+  background: #111111;
+  color: #ffffff;
+  font-weight: 700;
+  border-radius: var(--radius-pill);
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Verification Result Box */
+.attest-result-card {
+  padding: 2.25rem;
+  border-radius: var(--radius-lg);
+  border: 1px solid var(--border-medium);
+  background: #ffffff;
+  margin-top: 2rem;
+  display: none;
+  box-shadow: var(--shadow-card);
+}
+
+.attest-result-card.active {
+  display: block;
+  animation: fadeIn 250ms var(--ease-apple);
+}
+
+.attest-result-card.verified {
+  border-color: #16a34a;
+  background: #ffffff;
+  box-shadow: 0 4px 20px rgba(22, 163, 74, 0.12);
+}
+
+.verified-stamp {
+  display: inline-flex;
+  align-items: center;
+  gap: 0.6rem;
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.08em;
+  padding: 0.5rem 1.15rem;
+  background: #111111;
+  color: #ffffff;
+  border-radius: var(--radius-pill);
+  margin-bottom: 1.5rem;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+}
+
+/* Dual-Ledger Inspector Split Screen */
+.inspector-split-grid {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 2.5rem;
+}
+
+.inspector-pane {
+  background: #ffffff;
+  border: 1px solid var(--border-medium);
+  border-radius: var(--radius-xl);
+  padding: 2.5rem;
+  box-shadow: var(--shadow-card);
+}
+
+.inspector-pane-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 2rem;
+  padding-bottom: 1.25rem;
+  border-bottom: 1px solid var(--border-subtle);
+}
+
+.inspector-pane-title {
+  font-family: var(--font-mono);
+  font-size: 0.9rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 0.05em;
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  color: #111111;
+}
+
+.inspector-data-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1.25rem;
+}
+
+.inspector-data-row {
+  display: flex;
+  flex-direction: column;
+  gap: 0.35rem;
+  padding: 1.15rem 1.25rem;
+  background: #fafafc;
+  border-radius: var(--radius-sm);
+  border: 1px solid var(--border-subtle);
+}
+
+.inspector-data-label {
+  font-family: var(--font-mono);
+  font-size: 0.725rem;
+  text-transform: uppercase;
+  letter-spacing: 0.06em;
+  color: var(--text-tertiary);
+}
+
+.inspector-data-value {
+  font-family: var(--font-mono);
+  font-size: 0.85rem;
+  color: #111111;
+  word-break: break-all;
+}
+
+.nullifier-tag {
+  display: inline-block;
+  font-family: var(--font-mono);
+  font-size: 0.775rem;
+  background: #ffffff;
+  border: 1px solid var(--border-medium);
+  padding: 0.4rem 0.85rem;
+  border-radius: var(--radius-pill);
+  color: #111111;
+  margin-right: 0.5rem;
+  margin-bottom: 0.5rem;
+  box-shadow: 0 1px 3px rgba(0, 0, 0, 0.04);
+}
+
+@media (max-width: 960px) {
+  .dapp-grid-split, .inspector-split-grid {
+    grid-template-columns: 1fr;
+  }
+}
