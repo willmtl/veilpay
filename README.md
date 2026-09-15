@@ -11,11 +11,11 @@ Built natively on the **Midnight Network**
 
 ## 1. Executive Summary
 
-Modern on-chain capital allocation—paying salaries, disbursing research grants, paying international contractors, and funding public causes—is broken across all existing financial infrastructures:
+Modern on-chain capital allocation: paying salaries, disbursing research grants, paying international contractors, and funding public causes: is broken across all existing financial infrastructures:
 
 1. **The Transparent Blockchain Trap (Ethereum, Solana)**: Broadcasts all salaries, contractor rates, and personal savings to the world. Coworkers monitor each other's salaries breeding resentment; competitors systematically poach engineers with targeted 20% raises; and contributors face physical extortion risks ($5 wrench attacks). Furthermore, when workers split payouts across cold storage and spending accounts, analytics engines (Chainalysis, Arkham) permanently cluster and link their wallets.
 2. **The Opaque Mixer Trap (Tornado Cash, Monero)**: Mixers pool funds indiscriminately without business logic or provenance checks. Malicious state actors and hackers exploit these pools, leading to blanket regulatory sanctions (OFAC). Furthermore, fully opaque systems make it impossible for a worker to prove their income to rent an apartment or obtain a mortgage.
-3. **The Idle Capital Bleed**: Millions of dollars in payroll and grant vaults sit locked in smart contracts for 30–90 days earning 0% yield.
+3. **The Idle Capital Bleed**: Millions of dollars in payroll and grant vaults sit locked in smart contracts for 30-90 days earning 0% yield.
 
 **VeilPay** solves these challenges by leveraging Midnight's **Compact** smart contract language and **dual-ledger architecture**, decoupling verifiable business accounting from confidential personal data.
 
@@ -157,7 +157,7 @@ veilpay/
 
 ### 1. Clone & Install Dependencies
 ```bash
-git clone https://github.com/your-org/veilpay.git
+git clone https://github.com/ayush035/veilpay.git
 cd veilpay
 npm install
 ```
