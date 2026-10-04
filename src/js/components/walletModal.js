@@ -1,17 +1,27 @@
 /* Interactive Apple-Style Midnight Wallet Modal */
 import { icons } from '../icons.js';
 import { store } from '../state.js';
-import { isLaceInstalled, connectLaceWallet } from '../laceConnector.js';
+import { isLaceInstalled, connectLaceWallet, getMidnightWallets } from '../laceConnector.js';
 
 let isModalOpen = false;
 let isFauceting = false;
 let laceStatus = null; // { type: 'info' | 'error', title: string, text: string, showInstallLink: boolean }
+
+function escapeHtml(str) {
+  return String(str).replace(/[&<>"']/g, (c) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' })[c]);
+}
+
+function isSafeIcon(icon) {
+  return typeof icon === 'string' && /^(data:image\/|https:\/\/)/.test(icon);
+}
 
 export function renderWalletModal() {
   const state = store;
   const isConnected = state.wallet.connected;
   const shortAddr = `${state.wallet.address.slice(0, 12)}...${state.wallet.address.slice(-6)}`;
   const hasLace = isLaceInstalled();
+  // Other injected Midnight wallets (e.g. 1AM), listed by their own name and icon
+  const otherWallets = getMidnightWallets().filter((w) => w.key !== 'mnLace');
 
   return `
     <div class="modal-overlay ${isModalOpen ? 'open' : ''}" id="wallet-modal-overlay">
@@ -39,7 +49,7 @@ export function renderWalletModal() {
                 <span class="status-dot"></span>
                 <span>${state.wallet.network}</span>
               </span>
-              <span class="text-xs text-mono text-tertiary">${state.wallet.walletName}</span>
+              <span class="text-xs text-mono text-tertiary">${escapeHtml(state.wallet.walletName)}</span>
             </div>
 
             <div style="margin-bottom: 1.25rem;">
@@ -96,6 +106,23 @@ export function renderWalletModal() {
                 ${hasLace ? 'Extension Detected' : 'Browser Extension'}
               </span>
             </button>
+
+            ${otherWallets.map((w) => `
+              <button class="card-sheen opt-connect-midnight" data-wallet-key="${escapeHtml(w.key)}" style="display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 1.5rem; background: var(--bg-surface-2); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); text-align: left; cursor: pointer; transition: all 0.2s ease;">
+                <div style="display: flex; align-items: center; gap: 1rem;">
+                  <div style="width: 40px; height: 40px; border-radius: var(--radius-sm); background: #111111; color: #ffffff; display: flex; align-items: center; justify-content: center; font-weight: 700; overflow: hidden;">
+                    ${isSafeIcon(w.icon) ? `<img src="${escapeHtml(w.icon)}" alt="" style="width: 100%; height: 100%; object-fit: cover;">` : icons.shield(20)}
+                  </div>
+                  <div>
+                    <div style="font-weight: 600; color: var(--text-primary); margin-bottom: 0.2rem;">${escapeHtml(w.name)}</div>
+                    <div class="text-xs text-tertiary">Midnight DApp Connector Wallet</div>
+                  </div>
+                </div>
+                <span class="tag-badge white" style="font-size: 0.7rem; color: #16a34a;">
+                  Extension Detected
+                </span>
+              </button>
+            `).join('')}
 
             <button class="card-sheen" id="opt-generate-ephemeral" style="display: flex; justify-content: space-between; align-items: center; padding: 1.25rem 1.5rem; background: var(--bg-surface-2); border: 1px solid var(--border-subtle); border-radius: var(--radius-lg); text-align: left; cursor: pointer; transition: all 0.2s ease;">
               <div style="display: flex; align-items: center; gap: 1rem;">
@@ -170,6 +197,7 @@ export function attachWalletModalListeners() {
   const overlay = document.getElementById('wallet-modal-overlay');
   const closeBtn = document.getElementById('btn-close-wallet-modal');
   const optLace = document.getElementById('opt-connect-lace');
+  const optMidnightWallets = document.querySelectorAll('.opt-connect-midnight');
   const optEphemeral = document.getElementById('opt-generate-ephemeral');
   const fallbackEphemeral = document.getElementById('btn-fallback-connect-ephemeral');
   const disconnectBtn = document.getElementById('btn-disconnect-wallet');
@@ -185,35 +213,47 @@ export function attachWalletModalListeners() {
     });
   }
 
+  const connectWallet = async (walletKey, walletLabel) => {
+    laceStatus = {
+      type: 'info',
+      title: `Connecting to ${walletLabel}...`,
+      text: 'Please check your browser extension window to authorize connection with VeilPay.',
+      showInstallLink: false
+    };
+    updateModalDOM();
+
+    const res = await connectLaceWallet(walletKey);
+    if (res.success) {
+      store.wallet.connected = true;
+      store.wallet.walletName = res.walletName;
+      store.wallet.address = res.address;
+      store.wallet.isRealLace = true;
+      store.wallet.laceApi = res.api;
+      store.notifyStateChange();
+      closeWalletModal();
+    } else {
+      laceStatus = {
+        type: 'error',
+        title: `${walletLabel} Connection Denied`,
+        text: res.message || `Connection request was rejected or closed in the ${walletLabel} wallet.`,
+        showInstallLink: false
+      };
+      updateModalDOM();
+    }
+  };
+
+  optMidnightWallets.forEach((opt) => {
+    opt.addEventListener('click', () => {
+      const walletKey = opt.getAttribute('data-wallet-key');
+      const wallet = getMidnightWallets().find((w) => w.key === walletKey);
+      if (wallet) connectWallet(wallet.key, escapeHtml(wallet.name));
+    });
+  });
+
   if (optLace) {
     optLace.addEventListener('click', async () => {
       if (isLaceInstalled()) {
-        laceStatus = {
-          type: 'info',
-          title: 'Connecting to Midnight Lace...',
-          text: 'Please check your browser extension window to authorize connection with VeilPay.',
-          showInstallLink: false
-        };
-        updateModalDOM();
-
-        const res = await connectLaceWallet();
-        if (res.success) {
-          store.wallet.connected = true;
-          store.wallet.walletName = res.walletName;
-          store.wallet.address = res.address;
-          store.wallet.isRealLace = true;
-          store.wallet.laceApi = res.api;
-          store.notifyStateChange();
-          closeWalletModal();
-        } else {
-          laceStatus = {
-            type: 'error',
-            title: 'Lace Connection Denied',
-            text: res.message || 'Connection request was rejected or closed in the Midnight Lace wallet.',
-            showInstallLink: false
-          };
-          updateModalDOM();
-        }
+        await connectWallet('mnLace', 'Midnight Lace');
       } else {
         laceStatus = {
           type: 'error',
